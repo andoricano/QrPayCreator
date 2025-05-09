@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -56,4 +58,23 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    // Hilt dependencies
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+
+    // Hilt and ViewModel integration (optional)
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+
+    //hilt life
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+
+    //hilt test
+    implementation("androidx.compose.compiler:compiler:1.5.3")
+}
+
+//hilt +
+kapt {
+    correctErrorTypes = true
 }
